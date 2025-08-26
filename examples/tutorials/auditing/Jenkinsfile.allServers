@@ -25,10 +25,11 @@ pipeline {
             }
             steps {
                 withCredentials([
-                    gitUsernamePassword(credentialsId: 'github-token-rw', gitToolName: 'Default'),
+                    gitUsernamePassword(credentialsId: 'gh-user-token', gitToolName: 'Default'),
                     usernamePassword(credentialsId: 'bundleutils-creds', passwordVariable: 'BUNDLEUTILS_PASSWORD', usernameVariable: 'BUNDLEUTILS_USERNAME')
                 ]){
-                    sh '/opt/bundleutils/work/examples/tutorials/auditing/audit.sh cjoc-and-online-servers'
+                    //sh '/opt/bundleutils/work/examples/tutorials/auditing/audit.sh cjoc-and-online-servers'
+                    sh '01-cloneBranchAuditPush.sh'
                 }
             }
         }
